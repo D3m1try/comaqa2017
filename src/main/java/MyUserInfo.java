@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class MyUserInfo implements UserInfo {
     String passphrase = "";
-    String password = "";
+    String password = "111111";
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     @Override
@@ -17,13 +17,6 @@ public class MyUserInfo implements UserInfo {
 
     @Override
     public String getPassword() {
-        System.out.println("get password");
-        try {
-            password = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         return password;
     }
 
@@ -42,19 +35,8 @@ public class MyUserInfo implements UserInfo {
 
     @Override
     public boolean promptYesNo(String message) {
-        System.out.println(message);
-        System.out.println("y/n");
-        try {
-            if (reader.readLine().equalsIgnoreCase("y")){
-                return true;
-            } else {
-                return false;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        return false;
+        return true;
     }
 
     @Override
