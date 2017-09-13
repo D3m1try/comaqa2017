@@ -8,14 +8,20 @@ import java.util.concurrent.Callable;
 
 public class PortListener implements Runnable{
     private Callable callbackFunction;
+    private int port = 47000;
 
     public PortListener(Callable callbackFunction) {
         this.callbackFunction = callbackFunction;
     }
 
+    public PortListener(Callable callbackFunction, int port) {
+        this.callbackFunction = callbackFunction;
+        this.port = port;
+    }
+
     @Override
     public void run() {
-        try (ServerSocket server = new ServerSocket(47000)) {
+        try (ServerSocket server = new ServerSocket(port)) {
             Socket conn = server.accept();
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
