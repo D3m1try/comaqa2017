@@ -7,10 +7,10 @@ public class SshCommandExecutor {
     Channel channel;
     InputStream in;
 
-    {
+    public SshCommandExecutor() {
         try {
             JSch jsch = new JSch();
-            session = jsch.getSession("dima", "localhost", 22);
+            session = jsch.getSession("dima", "192.168.56.1", 22);
             UserInfo ui = new MyUserInfo();
             session.setUserInfo(ui);
             session.connect();
@@ -20,6 +20,21 @@ public class SshCommandExecutor {
         }
     }
 
+    public void setRemotePortForwarding(int remotePort, String host, int localPort){
+        try {
+            session.setPortForwardingR(remotePort, host, localPort);
+        } catch (JSchException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setLocalPortForwarding(int localPort, String host, int remotePort){
+        try {
+            session.setPortForwardingL(localPort, host, remotePort);
+        } catch (JSchException e) {
+            e.printStackTrace();
+        }
+    }
 
     public String execute(String command) throws Exception {
         StringBuilder result = new StringBuilder();
