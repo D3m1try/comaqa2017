@@ -11,7 +11,6 @@ public class MyUserInfo implements UserInfo {
 
     @Override
     public String getPassphrase() {
-        System.out.println("get passphrase");
         return passphrase;
     }
 
@@ -22,8 +21,6 @@ public class MyUserInfo implements UserInfo {
 
     @Override
     public boolean promptPassword(String message) {
-        System.out.println(message);
-
         return true;
     }
 
